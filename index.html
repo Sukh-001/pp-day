@@ -8,7 +8,6 @@
   * {margin:0; padding:0; box-sizing:border-box; font-family:monospace;}
   html, body {height:100%; width:100%; overflow:hidden;}
 
-  /* Page common */
   .page {display:none; width:100%; height:100%; position:absolute; top:0; left:0; justify-content:center; align-items:center; flex-direction:column; transition: opacity 0.8s ease;}
   .page.show {display:flex; opacity:1;}
   .page.hide {opacity:0;}
@@ -29,7 +28,7 @@
   }
   @keyframes floatUp {0%{transform:translateY(100vh) scale(0.5);}100%{transform:translateY(-50px) scale(1);}}
 
-  /* Page 1 styles */
+  /* Page 1 */
   #page1 {background: linear-gradient(135deg, #ffb6c1, #ff69b4); flex-direction:column; text-align:center;}
   #page1 h1 {font-size:3em; color:#fff0f5; text-transform:uppercase; margin-bottom:20px;}
   #page1 p {font-size:1.5em; color:#ffe4e1; margin-bottom:40px;}
@@ -39,14 +38,14 @@
   .loader {width:300px; height:auto; border-radius:15px; box-shadow:0px 10px 30px rgba(0,0,0,0.2);}
 
   /* Envelope page */
-  #envelopePage {background:#fdf5e6; flex-direction:row; justify-content:space-around; align-items:center; padding:50px;}
-  .envelope {width:180px; cursor:pointer; transition:transform 0.5s;}
-  .envelope:hover {transform:scale(1.1) rotate(-5deg);}
-  .letter {display:none; width:400px; background:#fff8dc; padding:20px; border:2px solid #d2691e; border-radius:12px; animation:slideIn 1s ease forwards;}
-  @keyframes slideIn {0%{opacity:0; transform:translateY(-50px);}100%{opacity:1; transform:translateY(0);}}
+  #envelopePage {background:#fdf5e6; flex-direction:column; justify-content:center; align-items:center; position:relative;}
+  .envelope {width:250px; cursor:pointer; position:absolute; bottom:50px; right:50px; transition: transform 1s ease; z-index:2;}
+  .envelope.open {transform: rotateX(-180deg);}
+  .letter {position:absolute; top:0; left:0; width:400px; background:#fff8dc; padding:20px; border:2px solid #d2691e; border-radius:12px; transform:translateY(150px); opacity:0; transition: transform 1s ease, opacity 1s ease; z-index:1;}
+  .letter.show {transform:translateY(0); opacity:1;}
   .letter-content {text-align:left; font-size:1.2em; line-height:1.5em; color:#000;}
 
-  #rightText {font-size:1.5em; color:#8b0000; max-width:250px; text-align:center;}
+  #rightText {font-size:1.5em; color:#8b0000; max-width:250px; text-align:center; margin-top:20px;}
 
   /* Fireworks */
   .fireworks-container {position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:1000; display:none;}
@@ -94,7 +93,7 @@
     </div>
     <button id="yesBtn" style="margin-top:20px;">if YES, click this 🫠</button>
   </div>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Red_Envelope.png" alt="red envelope" class="envelope" id="envelope" style="position:absolute; right:50px; top:50%;">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Red_Envelope.png" alt="red envelope" class="envelope" id="envelope">
   <div id="rightText">I hope I made you smile the way I’ve always wanted to 💗</div>
 </div>
 
@@ -147,13 +146,13 @@ startBtn.addEventListener('click', () => {
   }, 3000);
 });
 
-// Envelope click -> show letter
+// Envelope click -> flip + letter slide out
 envelope.addEventListener('click', () => {
-  envelope.style.transform = 'scale(1.2) rotate(-20deg)';
+  envelope.classList.add('open'); // flip
   setTimeout(()=>{
     envelope.style.display='none';
-    letter.style.display='block';
-  }, 500);
+    letter.classList.add('show');  // slide letter
+  }, 1000);
 });
 
 // YES button -> fireworks + final text
