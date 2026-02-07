@@ -91,25 +91,63 @@ button:hover{
 }
 
 /* PAGE 3 */
-#page3{
-  background:#fdf5e6;
-  flex-direction:row;
-  justify-content:space-around;
-}
-
 .envelope-area{
   position:relative;
+  width:260px;
+  height:200px;
+  margin-top:50px;
 }
 
+/* Envelope body */
 .envelope{
   width:260px;
+  height:160px;
+  background:#c0002b;
+  position:relative;
   cursor:pointer;
+  border-radius:0 0 10px 10px;
+  overflow:hidden;
   transition:transform 1s ease;
 }
 
-.envelope.open{
-  transform:rotateX(-180deg);
+/* Envelope top flap */
+.envelope-top{
+  position:absolute;
+  top:0;
+  width:0;
+  height:0;
+  border-left:130px solid transparent;
+  border-right:130px solid transparent;
+  border-bottom:80px solid #e60039;
+  transform-origin:top;
+  transition:transform 1s ease;
 }
+
+/* Envelope animation */
+.envelope.open .envelope-top{
+  transform:rotateX(180deg);
+}
+
+/* Letter */
+.letter{
+  position:absolute;
+  top:-20px;
+  width:300px;
+  background:#fffaf0;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.3);
+  opacity:0;
+  transform:translateY(120px);
+  transition:1s ease;
+  z-index:5;
+}
+
+.letter.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
 
 .letter{
   width:300px;
@@ -192,31 +230,35 @@ button:hover{
 </div>
 
 <!-- PAGE 3 -->
-<div class="page" id="page3">
 
   <div class="envelope-area">
-    <img src="https://in.pinterest.com/pin/73183562689524244/"
-         class="envelope" id="envelope">
 
-    <div class="letter" id="letter">
-      Hii my little babbyiee 💝<br><br>
-
-      Today isn’t just another date on the calendar.  
-      It’s Propose Day… and I tried to create something on my own,  
-      hoping it makes you smile 🫠💗<br><br>
-
-      Of all the moments, places and people in this world,  
-      my heart chose you…  
-      and it keeps choosing you every single day 💞<br><br>
-
-      No matter the distance, no matter the time,  
-      you are my comfort, my smile,  
-      and my favorite part of every tomorrow ❤️
-
-      <br><br>
-      <button onclick="goPage(4)">IF YES, CLICK THIS 🫠</button>
-    </div>
+  <div class="envelope" id="envelope">
+    <div class="envelope-top"></div>
+    <div class="envelope-body"></div>
   </div>
+
+  <div class="letter" id="letter">
+    Hii my little babbyiee 💝<br><br>
+
+    Today isn’t just another date on the calendar.  
+    It’s Propose Day… and I tried to make something on my own,  
+    hoping it makes you smile 🫠💗<br><br>
+
+    Of all the moments, places and people in this world,  
+    my heart chose you…  
+    and it keeps choosing you every single day 💞<br><br>
+
+    No matter the distance, no matter the time,  
+    you are my comfort, my smile,  
+    and my favorite part of every tomorrow ❤️
+
+    <br><br>
+    <button onclick="goPage(4)">IF YES, CLICK THIS 🫠</button>
+  </div>
+
+</div>
+
 
   <div class="right-text">
     I hope I made you smile  
