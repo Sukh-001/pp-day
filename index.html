@@ -2,147 +2,254 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Purpose Day 💌</title>
+<title>Propose Day 💝</title>
+
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { 
-    font-family: 'Arial', sans-serif; 
-    background: linear-gradient(135deg, #f8c1c1, #ffb6b9);
-    display: flex; justify-content: center; align-items: center;
-    min-height: 100vh; overflow: hidden; color: #fff;
-  }
-  .container {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.15);
-    padding: 50px 30px;
-    border-radius: 25px;
-    box-shadow: 0 0 30px rgba(255,255,255,0.3);
-    backdrop-filter: blur(10px);
-    max-width: 400px;
-    animation: fadeIn 2s ease forwards;
-  }
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-  }
-  p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-  }
-  .btn {
-    padding: 15px 30px;
-    border: none;
-    border-radius: 50px;
-    margin: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .btn-yes {
-    background: #ff6b81;
-    color: #fff;
-  }
-  .btn-yes:hover {
-    background: #ff4757;
-    transform: scale(1.1);
-  }
-  .btn-no {
-    background: #aaa;
-    color: #fff;
-  }
-  .btn-no:hover {
-    background: #888;
-    transform: scale(1.1);
-  }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: monospace;
+}
 
-  /* Heart animation */
-  .heart {
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background-color: red;
-    transform: rotate(45deg);
-    animation: floatHeart linear infinite;
-  }
-  .heart::before,
-  .heart::after {
-    content: "";
-    position: absolute;
-    width: 15px;
-    height: 15px;
-    background-color: red;
-    border-radius: 50%;
-  }
-  .heart::before { top: -7.5px; left: 0; }
-  .heart::after { left: 7.5px; top: 0; }
+body{
+  background:#f8e8e8;
+  height:100vh;
+  overflow:hidden;
+}
 
-  @keyframes fadeIn {
-    0% { opacity: 0; transform: scale(0.8);}
-    100% { opacity: 1; transform: scale(1);}
-  }
-  @keyframes floatHeart {
-    0% { transform: translateY(0) rotate(45deg); opacity:1;}
-    100% { transform: translateY(-600px) rotate(45deg); opacity:0;}
-  }
+/* COMMON */
+.page{
+  display:none;
+  height:100vh;
+  width:100%;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+}
+
+.active{
+  display:flex;
+}
+
+button{
+  padding:15px 30px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  background:#ff5c8a;
+  color:white;
+  cursor:pointer;
+  margin-top:30px;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#e6005c;
+  transform:scale(1.05);
+}
+
+/* PAGE 1 */
+#page1{
+  background:linear-gradient(135deg,#ffd6e8,#ffeaf2);
+}
+
+#page1 h1{
+  font-size:3em;
+  text-transform:uppercase;
+}
+
+#page1 h2{
+  margin-top:20px;
+  font-size:1.4em;
+  color:#6b0030;
+}
+
+/* PAGE 2 */
+#page2{
+  background:#fff0f5;
+}
+
+.loader{
+  margin-bottom:30px;
+  font-size:1.3em;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%{opacity:0.3;}
+  50%{opacity:1;}
+  100%{opacity:0.3;}
+}
+
+.gif-box img{
+  width:320px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* PAGE 3 */
+#page3{
+  background:#fdf5e6;
+  flex-direction:row;
+  justify-content:space-around;
+}
+
+.envelope-area{
+  position:relative;
+}
+
+.envelope{
+  width:260px;
+  cursor:pointer;
+  transition:transform 1s ease;
+}
+
+.envelope.open{
+  transform:rotateX(-180deg);
+}
+
+.letter{
+  width:300px;
+  background:#fffaf0;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  position:absolute;
+  top:-20px;
+  opacity:0;
+  transform:translateY(120px);
+  transition:1s;
+}
+
+.letter.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.right-text{
+  max-width:300px;
+  font-size:1.4em;
+  color:#8b0000;
+}
+
+/* PAGE 4 */
+#page4{
+  background:black;
+  color:white;
+}
+
+.firework{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:gold;
+  border-radius:50%;
+  animation:explode 1s infinite;
+}
+
+@keyframes explode{
+  0%{transform:scale(0);}
+  100%{transform:scale(20);opacity:0;}
+}
+
+.final-text{
+  z-index:2;
+  text-align:center;
+}
+
+.final-text h1{
+  font-size:3em;
+}
+
+.final-text p{
+  margin-top:20px;
+  font-size:1.5em;
+}
 </style>
 </head>
+
 <body>
 
-<div class="container">
-  <h1>Happy Purpose Day! 💖</h1>
-  <p>From your long-distance boyfriend with love 💌</p>
-  <button class="btn btn-yes" onclick="yesClicked()">YES 💖</button>
-  <button class="btn btn-no" onclick="noClicked()">NO 😢</button>
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <h1>HELLO MY LITTLE HONEYY BEE 🐝💝</h1>
+  <h2>TODAY IS YOUR DAY BABBY  
+  <br>CLICK ON THE BUTTON BELOW 🫠👇</h2>
+  <button onclick="goPage(2)">CLICK HERE</button>
 </div>
 
-<audio id="music" loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
-</audio>
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <div class="loader">Loading something special for you… 💞</div>
+  <div class="gif-box">
+    <!-- REPLACE THIS GIF WITH YOUR OWN -->
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+  </div>
+  <button onclick="goPage(3)">NEXT 💗</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+
+  <div class="envelope-area">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Red_Envelope.png"
+         class="envelope" id="envelope">
+
+    <div class="letter" id="letter">
+      Hii my little babbyiee 💝<br><br>
+
+      Today isn’t just another date on the calendar.  
+      It’s Propose Day… and I tried to create something on my own,  
+      hoping it makes you smile 🫠💗<br><br>
+
+      Of all the moments, places and people in this world,  
+      my heart chose you…  
+      and it keeps choosing you every single day 💞<br><br>
+
+      No matter the distance, no matter the time,  
+      you are my comfort, my smile,  
+      and my favorite part of every tomorrow ❤️
+
+      <br><br>
+      <button onclick="goPage(4)">IF YES, CLICK THIS 🫠</button>
+    </div>
+  </div>
+
+  <div class="right-text">
+    I hope I made you smile  
+    the way I’ve always wanted to 💗
+  </div>
+
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <div class="final-text">
+    <h1>WORTH IT 😌</h1>
+    <p>I LOVE YOU CHUNMUN…  
+    <br>FOR ALWAYS, FOR ALL THE TIME 😘❤️❤️</p>
+  </div>
+</div>
 
 <script>
-  const music = document.getElementById('music');
-  music.play();
+function goPage(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page'+n).classList.add('active');
+}
 
-  function yesClicked() {
-    alert("Yay! 💖 I’m so happy you said YES! Sending all my love ❤️");
-    createHearts();
-    showMessageSequence();
-  }
+const envelope = document.getElementById("envelope");
+const letter = document.getElementById("letter");
 
-  function noClicked() {
-    alert("It's okay 😢 I still love you ❤️");
-  }
-
-  // Floating hearts
-  function createHearts() {
-    for (let i = 0; i < 50; i++) {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.animationDuration = (Math.random() * 5 + 3) + 's';
-      heart.style.width = heart.style.height = (Math.random() * 20 + 10) + 'px';
-      heart.style.backgroundColor = `hsl(${Math.random()*360}, 80%, 60%)`;
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }
-  }
-
-  // Message sequence
-  function showMessageSequence() {
-    const container = document.querySelector('.container');
-    container.innerHTML = `
-      <h1>Happy Purpose Day, My Love! 💖</h1>
-      <p>Every moment with you is special 😘</p>
-    `;
-    setTimeout(() => {
-      container.innerHTML += `<p>I can’t wait to hug you and make this day unforgettable! 🥰</p>`;
-    }, 2000);
-    setTimeout(() => {
-      container.innerHTML += `<p>Will you be my Purpose Day sweetheart forever? 💕</p>`;
-    }, 4000);
-  }
+envelope.onclick = () => {
+  envelope.classList.add("open");
+  setTimeout(()=>{
+    envelope.style.display="none";
+    letter.classList.add("show");
+  },1000);
+};
 </script>
 
 </body>
