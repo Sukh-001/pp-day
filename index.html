@@ -39,8 +39,9 @@ button{
   background:#ff5c8a;
   color:white;
   cursor:pointer;
-  margin-top:30px;
+  margin-top:20px;
   transition:.3s;
+  z-index:5;
 }
 
 button:hover{
@@ -62,6 +63,21 @@ button:hover{
   margin-top:20px;
   font-size:1.4em;
   color:#6b0030;
+}
+
+/* POLAROID */
+.polaroid-container{
+  margin:25px 0;
+  position:relative;
+}
+
+.polaroid{
+  width:220px;
+  background:white;
+  padding:12px 12px 35px 12px;
+  border-radius:4px;
+  box-shadow:0 15px 35px rgba(0,0,0,.35);
+  transform:rotate(-6deg);
 }
 
 /* PAGE 2 */
@@ -179,9 +195,9 @@ button:hover{
 
 <body>
 
-<!-- Background Music -->
+<!-- MUSIC -->
 <audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_43c9b9f9a1.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_43c9b9f9a1.mp3">
 </audio>
 
 <!-- PAGE 1 -->
@@ -191,6 +207,12 @@ button:hover{
     TODAY IS YOUR DAY BABBY  
     <br>CLICK ON THE BUTTON BELOW 🫠👇
   </h2>
+
+  <div class="polaroid-container">
+    <!-- CHANGE IMAGE NAME IF NEEDED -->
+    <img src="IMG_5753-Converted.jpg" class="polaroid">
+  </div>
+
   <button onclick="startExperience()">CLICK HERE</button>
 </div>
 
@@ -198,7 +220,6 @@ button:hover{
 <div class="page" id="page2">
   <div class="loader">Loading something special for you… 💞</div>
   <div class="gif-box">
-    <!-- YOU CAN CHANGE THIS GIF -->
     <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
   </div>
   <button onclick="goPage(3)">NEXT 💗</button>
@@ -220,7 +241,6 @@ button:hover{
   </div>
 
   <div class="center-text">
-    Sorry babe 🙂‍↔️ You have to click on this envelope😬!
     I hope I made you smile the way I’ve always wanted to 💗
   </div>
 </div>
@@ -251,6 +271,7 @@ function goPage(n){
 
 const envelope = document.getElementById("envelope");
 const letter = document.getElementById("letter");
+
 const text = `Hii my little babbyiee 💝
 
 Today isn’t just another date on the calendar.
@@ -265,7 +286,7 @@ No matter the distance, no matter the time,
 you are my comfort, my smile,
 and my favorite part of every tomorrow ❤️`;
 
-let index = 0;
+let i = 0;
 
 envelope.onclick = () => {
   envelope.classList.add("open");
@@ -277,16 +298,16 @@ envelope.onclick = () => {
 };
 
 function typeText(){
-  if(index < text.length){
-    document.getElementById("typedText").innerHTML += text.charAt(index);
-    index++;
+  if(i < text.length){
+    document.getElementById("typedText").innerHTML += text.charAt(i);
+    i++;
     setTimeout(typeText,30);
   }
 }
 
 function goFinal(){
   goPage(4);
-  for(let i=0;i<25;i++){
+  for(let j=0;j<30;j++){
     let f = document.createElement("div");
     f.className="firework";
     f.style.left=Math.random()*100+"%";
