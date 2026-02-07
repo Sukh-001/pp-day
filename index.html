@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purpose Day 💝</title>
+<style>
+  /* Reset & Font */
+  * {margin:0; padding:0; box-sizing:border-box; font-family:monospace;}
+  html, body {height:100%; width:100%; overflow:hidden;}
+
+  /* Pink gradient background */
+  body {
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+    display:flex; 
+    justify-content:center; 
+    align-items:center;
+    flex-direction:column;
+    transition: background 1s ease;
+  }
+
+  .page {
+    display:none;
+    width:100%;
+    max-width:800px;
+    text-align:center;
+    padding:20px;
+    position:absolute;
+    top:0; left:0; right:0; bottom:0;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    transition: opacity 0.8s ease;
+  }
+
+  .page.show {display:flex; opacity:1;}
+  .page.hide {opacity:0;}
+
+  h1 {font-size:2.5em; color:#fff0f5; margin-bottom:10px;}
+  p {font-size:1.5em; color:#ffe4e1; margin-bottom:30px;}
+
+  button {
+    padding:15px 30px; font-size:1.2em; cursor:pointer;
+    border:none; background:#ff69b4; color:white; border-radius:12px;
+    transition:0.3s; box-shadow:0px 5px 10px rgba(0,0,0,0.2);
+  }
+  button:hover {background:#ff1493; transform:translateY(-2px);}
+
+  /* Loader */
+  .loader {width:150px; margin:auto;}
+
+  /* Envelope Page */
+  .envelope-container {
+    display:flex; flex-wrap:wrap; justify-content:space-around; align-items:center; margin-top:30px;
+  }
+  .envelope {width:180px; cursor:pointer; transition: transform 0.5s;}
+  .envelope:hover {transform:scale(1.1) rotate(-5deg);}
+  
+  .letter {
+    display:none;
+    width:90%; max-width:450px;
+    background:#fff8dc; padding:20px;
+    border:2px solid #d2691e; border-radius:12px;
+    margin-top:20px; animation:slideIn 1s ease forwards;
+  }
+  @keyframes slideIn {0%{opacity:0; transform:translateY(-50px);}100%{opacity:1; transform:translateY(0);}}
+
+  .letter-content {text-align:left; font-size:1.2em; line-height:1.5em; color:#000;}
+
+  /* Fireworks */
+  .fireworks-container {
+    position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden; z-index:1000; display:none;
+  }
+  .firework {
+    position:absolute; width:8px; height:8px; border-radius:50%; animation:explode 1s linear forwards;
+  }
+  @keyframes explode {0%{opacity:1; transform:scale(1);}100%{opacity:0; transform:scale(5);}}
+
+  .final-text {
+    display:none; font-size:2em; color:#ff1493; margin-top:20px;
+    animation:fadeIn 2s ease forwards; text-align:center; padding:0 20px;
+  }
+  @keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
+
+  /* Responsive */
+  @media(max-width:480px){
+    h1{font-size:2em;} p{font-size:1.2em;}
+    button{font-size:1em; padding:12px 25px;}
+    .letter-content{font-size:1em;}
+  }
+</style>
+</head>
+<body>
+
+<!-- Page 1 -->
+<div class="page show" id="page1">
+  <h1>Hello my little honeyy bee 🐝 💝</h1>
+  <p>Today is your day babby. Click on the below button 🫠👇</p>
+  <button id="startBtn">Click Here</button>
+</div>
+
+<!-- Loader Page -->
+<div class="page" id="loaderPage">
+  <img src="https://media.giphy.com/media/3o6Mbbs879ozZ9Yic0/giphy.gif" alt="teddy bear kiss" class="loader">
+</div>
+
+<!-- Envelope Page -->
+<div class="page" id="envelopePage">
+  <div class="envelope-container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Red_Envelope.png" alt="red envelope" class="envelope" id="envelope">
+    <p id="rightText" style="font-size:1.5em; color:#fff0f5;">I hope I made you smile the way I’ve always wanted to 💗</p>
+  </div>
+  <div class="letter" id="letter">
+    <div class="letter-content">
+      Hii my little babbyiee,<br><br>
+      Today isn’t just another date on the calendar.  
+      It is kind of another, mne khud bnane ki koshish ki ki pta ni kaisa lgegaa tujhe, and a beautiful purpose 🫠💝.....to remind you how deeply you’re loved.  
+      Of all the moments, places, and people in the world, my heart chose you,  
+      and it keeps choosing you every single day.  
+      No matter the distance,.....no matter the time, no matter  
+      you are my comfort, my smile, and my favorite part of every tomorrow 💞
+    </div>
+    <button id="yesBtn" style="margin-top:20px;">if YES, click this 🫠</button>
+  </div>
+</div>
+
+<!-- Fireworks -->
+<div class="fireworks-container" id="fireworksContainer"></div>
+
+<!-- Final Text -->
+<div class="final-text" id="finalText">
+  Worth it😌<br>
+  I Love You Chunmun... For always, For all the time😘❤️❤️
+</div>
+
+<script>
+const startBtn = document.getElementById('startBtn');
+const page1 = document.getElementById('page1');
+const loaderPage = document.getElementById('loaderPage');
+const envelopePage = document.getElementById('envelopePage');
+const envelope = document.getElementById('envelope');
+const letter = document.getElementById('letter');
+const yesBtn = document.getElementById('yesBtn');
+const fireworksContainer = document.getElementById('fireworksContainer');
+const finalText = document.getElementById('finalText');
+
+// Page transition helper
+function showPage(hide, show){
+  hide.classList.remove('show');
+  hide.classList.add('hide');
+  setTimeout(()=>{
+    hide.style.display='none';
+    show.style.display='flex';
+    show.classList.add('show');
+  },800);
+}
+
+// Start button click -> loader
+startBtn.addEventListener('click', () => {
+  showPage(page1, loaderPage);
+  setTimeout(() => {
+    showPage(loaderPage, envelopePage);
+  }, 3000);
+});
+
+// Envelope click -> show letter
+envelope.addEventListener('click', () => {
+  envelope.style.transform = 'scale(1.1) rotate(-20deg)';
+  setTimeout(()=>{ envelope.style.display='none'; letter.style.display='block'; }, 500);
+});
+
+// YES button -> fireworks + final text
+yesBtn.addEventListener('click', () => {
+  letter.style.display='none';
+  fireworksContainer.style.display='block';
+  const colors = ['#ff0','#ff1493','#ff69b4','#00ffff','#7fff00','#ffa500'];
+
+  for(let i=0;i<70;i++){
+    const firework = document.createElement('div');
+    firework.classList.add('firework');
+    firework.style.left = Math.random()*window.innerWidth+'px';
+    firework.style.top = Math.random()*window.innerHeight+'px';
+    firework.style.background = colors[Math.floor(Math.random()*colors.length)];
+    firework.style.width = firework.style.height = (5+Math.random()*8)+'px';
+    fireworksContainer.appendChild(firework);
+    setTimeout(()=>firework.remove(),1000);
+  }
+
+  setTimeout(()=>{
+    fireworksContainer.style.display='none';
+    finalText.style.display='block';
+  },1000);
+});
+</script>
+</body>
+</html>
