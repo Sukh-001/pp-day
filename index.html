@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Propose Day 💝</title>
+<title>Propose Day 💗</title>
 
 <style>
 *{
@@ -13,7 +13,6 @@
 }
 
 body{
-  background:#f8e8e8;
   height:100vh;
   overflow:hidden;
 }
@@ -30,12 +29,10 @@ body{
   padding:20px;
 }
 
-.active{
-  display:flex;
-}
+.active{ display:flex; }
 
 button{
-  padding:15px 30px;
+  padding:14px 34px;
   font-size:18px;
   border:none;
   border-radius:30px;
@@ -43,12 +40,12 @@ button{
   color:white;
   cursor:pointer;
   margin-top:30px;
-  transition:0.3s;
+  transition:.3s;
 }
 
 button:hover{
+  transform:scale(1.08);
   background:#e6005c;
-  transform:scale(1.05);
 }
 
 /* PAGE 1 */
@@ -68,49 +65,45 @@ button:hover{
 }
 
 /* PAGE 2 */
-#page2{
-  background:#fff0f5;
-}
+#page2{ background:#fff0f5; }
 
 .loader{
-  margin-bottom:30px;
+  margin-bottom:20px;
   font-size:1.3em;
   animation:pulse 1.5s infinite;
 }
 
 @keyframes pulse{
-  0%{opacity:0.3;}
+  0%{opacity:.3;}
   50%{opacity:1;}
-  100%{opacity:0.3;}
+  100%{opacity:.3;}
 }
 
 .gif-box img{
-  width:320px;
+  width:360px;
   border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  box-shadow:0 12px 35px rgba(0,0,0,.3);
 }
 
 /* PAGE 3 */
+#page3{ background:#fdf5e6; }
+
 .envelope-area{
   position:relative;
   width:260px;
   height:200px;
-  margin-top:50px;
 }
 
-/* Envelope body */
 .envelope{
   width:260px;
   height:160px;
   background:#c0002b;
-  position:relative;
+  border-radius:0 0 14px 14px;
   cursor:pointer;
-  border-radius:0 0 10px 10px;
-  overflow:hidden;
-  transition:transform 1s ease;
+  position:relative;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
 }
 
-/* Envelope top flap */
 .envelope-top{
   position:absolute;
   top:0;
@@ -123,23 +116,21 @@ button:hover{
   transition:transform 1s ease;
 }
 
-/* Envelope animation */
 .envelope.open .envelope-top{
   transform:rotateX(180deg);
 }
 
-/* Letter */
 .letter{
   position:absolute;
   top:-20px;
-  width:300px;
+  width:340px;
   background:#fffaf0;
-  padding:20px;
+  padding:22px;
   border-radius:10px;
-  box-shadow:0 5px 20px rgba(0,0,0,0.3);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
   opacity:0;
-  transform:translateY(120px);
-  transition:1s ease;
+  transform:translateY(140px);
+  transition:1s;
   z-index:5;
 }
 
@@ -148,31 +139,11 @@ button:hover{
   transform:translateY(0);
 }
 
-
-.letter{
-  width:300px;
-  background:#fffaf0;
-  padding:20px;
-  border-radius:10px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.2);
-  position:absolute;
-  top:-20px;
-  opacity:0;
-  transform:translateY(120px);
-  transition:1s;
-}
-
-.letter.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.right-text{
-  max-width:400px;
-  text-align:center;
+.center-text{
+  margin-top:30px;
   font-size:1.4em;
   color:#8b0000;
-  margin-top:30px;
+  max-width:420px;
 }
 
 /* PAGE 4 */
@@ -187,99 +158,91 @@ button:hover{
   height:6px;
   background:gold;
   border-radius:50%;
-  animation:explode 1s infinite;
+  animation:boom 1.2s infinite;
 }
 
-@keyframes explode{
+@keyframes boom{
   0%{transform:scale(0);}
-  100%{transform:scale(20);opacity:0;}
-}
-
-.final-text{
-  z-index:2;
-  text-align:center;
+  100%{transform:scale(28);opacity:0;}
 }
 
 .final-text h1{
-  font-size:3em;
+  font-size:3.2em;
 }
 
 .final-text p{
+  font-size:1.7em;
   margin-top:20px;
-  font-size:1.5em;
 }
 </style>
 </head>
 
 <body>
 
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_43c9b9f9a1.mp3" type="audio/mpeg">
+</audio>
+
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
   <h1>HELLO MY LITTLE HONEYY BEE 🐝💝</h1>
-  <h2>TODAY IS YOUR DAY BABBY  
-  <br>CLICK ON THE BUTTON BELOW 🫠👇</h2>
-  <button onclick="goPage(2)">CLICK HERE</button>
+  <h2>
+    TODAY IS YOUR DAY BABBY  
+    <br>CLICK ON THE BUTTON BELOW 🫠👇
+  </h2>
+  <button onclick="startExperience()">CLICK HERE</button>
 </div>
 
 <!-- PAGE 2 -->
 <div class="page" id="page2">
   <div class="loader">Loading something special for you… 💞</div>
   <div class="gif-box">
-    <!-- REPLACE THIS GIF WITH YOUR OWN -->
+    <!-- YOU CAN CHANGE THIS GIF -->
     <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
   </div>
   <button onclick="goPage(3)">NEXT 💗</button>
 </div>
 
 <!-- PAGE 3 -->
+<div class="page" id="page3">
 
   <div class="envelope-area">
+    <div class="envelope" id="envelope">
+      <div class="envelope-top"></div>
+    </div>
 
-  <div class="envelope" id="envelope">
-    <div class="envelope-top"></div>
-    <div class="envelope-body"></div>
+    <div class="letter" id="letter">
+      <span id="typedText"></span>
+      <br><br>
+      <button onclick="goFinal()">IF YES, CLICK THIS 🫠</button>
+    </div>
   </div>
 
-  <div class="letter" id="letter">
-    Hii my little babbyiee 💝<br><br>
-
-    Today isn’t just another date on the calendar.  
-    It’s Propose Day… and I tried to make something on my own,  
-    hoping it makes you smile 🫠💗<br><br>
-
-    Of all the moments, places and people in this world,  
-    my heart chose you…  
-    and it keeps choosing you every single day 💞<br><br>
-
-    No matter the distance, no matter the time,  
-    you are my comfort, my smile,  
-    and my favorite part of every tomorrow ❤️
-
-    <br><br>
-    <button onclick="goPage(4)">IF YES, CLICK THIS 🫠</button>
+  <div class="center-text">
+    I hope I made you smile the way I’ve always wanted to 💗
   </div>
-
-</div>
-
-
-  <div class="right-text">
-    !!!! PLEASE CLICK ON THIS ENVELOPE !!!!!!
-    I hope I made you smile  
-    the way I’ve always wanted to 💗
-  </div>
-
 </div>
 
 <!-- PAGE 4 -->
 <div class="page" id="page4">
   <div class="final-text">
     <h1>WORTH IT 😌</h1>
-    <p>I LOVE YOU CHUNMUN…  
-    <br>FOR ALWAYS, FOR ALL THE TIME 😘❤️❤️</p>
+    <p>
+      I LOVE YOU CHUNMUN…  
+      <br>FOR ALWAYS, FOR ALL THE TIME 😘❤️❤️
+    </p>
   </div>
 </div>
 
 <script>
+const music = document.getElementById("bgMusic");
+
+function startExperience(){
+  music.play();
+  goPage(2);
+}
+
 function goPage(n){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page'+n).classList.add('active');
@@ -287,14 +250,49 @@ function goPage(n){
 
 const envelope = document.getElementById("envelope");
 const letter = document.getElementById("letter");
+const text = `Hii my little babbyiee 💝
+
+Today isn’t just another date on the calendar.
+It’s Propose Day… and I tried to create something on my own,
+hoping it makes you smile 🫠💗
+
+Of all the moments, places and people in the world,
+my heart chose you…
+and it keeps choosing you every single day 💞
+
+No matter the distance, no matter the time,
+you are my comfort, my smile,
+and my favorite part of every tomorrow ❤️`;
+
+let index = 0;
 
 envelope.onclick = () => {
   envelope.classList.add("open");
   setTimeout(()=>{
     envelope.style.display="none";
     letter.classList.add("show");
-  },1000);
+    typeText();
+  },900);
 };
+
+function typeText(){
+  if(index < text.length){
+    document.getElementById("typedText").innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeText,30);
+  }
+}
+
+function goFinal(){
+  goPage(4);
+  for(let i=0;i<25;i++){
+    let f = document.createElement("div");
+    f.className="firework";
+    f.style.left=Math.random()*100+"%";
+    f.style.top=Math.random()*100+"%";
+    document.body.appendChild(f);
+  }
+}
 </script>
 
 </body>
